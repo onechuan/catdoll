@@ -1,6 +1,6 @@
 {
   "name": "catdoll",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "猫娃娃工具",
   "main": "index.js",
   "scripts": {
