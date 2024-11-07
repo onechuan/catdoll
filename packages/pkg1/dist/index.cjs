@@ -1,10 +1,2 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-function sum(num1, num2) {
-    return num1 + num2;
-}
-
-exports.sum = sum;
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.sum=function(e,t){return e+t};
 //# sourceMappingURL=index.cjs.map

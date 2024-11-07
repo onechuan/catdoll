@@ -1,6 +1,2 @@
-function sum(num1, num2) {
-    return num1 + num2;
-}
-
-export { sum };
+function n(n,r){return n+r}export{n as sum};
 //# sourceMappingURL=index.js.map

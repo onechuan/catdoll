@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import typescript from 'rollup-plugin-typescript2';
 import dts from 'rollup-plugin-dts';
+import { terser } from 'rollup-plugin-terser';
 
 
 const packagesDir = path.resolve(__dirname, 'packages');
@@ -27,7 +28,8 @@ function output(path) {
             }
           },
           useTsconfigDeclarationDir: true
-        })
+        }),
+        terser()
       ]
     }, {
       input: [`./packages/${path}/src/index.ts`],
@@ -47,11 +49,11 @@ function output(path) {
             }
           },
           useTsconfigDeclarationDir: true
-        })
+        }),
+        terser()
       ]
     },
     {
-      
       input: [`./packages/${path}/src/index.ts`],
       output: [
         {
