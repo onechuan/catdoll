@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@catdoll/pkg1": "workspace:*"
+    "@catdoll/pkg1": "workspace:*",
+    "@catdoll/mitt": "workspace:*"
   }
 }
