@@ -1,10 +1,10 @@
 {
   "name": "@catdoll/pkg2",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "",
   "main": "src/index.ts",
   "type": "module",
-  "private":"false",
+  "private": "false",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@catdoll/pkg1": "workspace:*"
+    "@catdoll/pkg1": "workspace:*",
+    "@catdoll/mitt": "workspace:*"
   }
 }

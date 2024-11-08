@@ -1,8 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import typescript from 'rollup-plugin-typescript2';
+import dts from 'rollup-plugin-dts';
+import { terser } from 'rollup-plugin-terser';
+
+
 const packagesDir = path.resolve(__dirname, 'packages');
 const packageFiles = fs.readdirSync(packagesDir);
+
 function output(path) {
   return [
     {
@@ -10,7 +15,7 @@ function output(path) {
       output: [
         {
           file: `./packages/${path}/dist/index.js`,
-          format: 'umd',
+          format: 'esm',
           name: 'catdoll',
           sourcemap: true
         }
@@ -23,9 +28,40 @@ function output(path) {
             }
           },
           useTsconfigDeclarationDir: true
-        })
+        }),
+        terser()
       ]
-    }
+    }, {
+      input: [`./packages/${path}/src/index.ts`],
+      output: [
+        {
+          file: `./packages/${path}/dist/index.cjs`,
+          format: 'cjs',
+          name: 'catdoll',
+          sourcemap: true
+        }
+      ],
+      plugins: [
+        typescript({
+          tsconfigOverride: {
+            compilerOptions: {
+              module: 'ESNext'
+            }
+          },
+          useTsconfigDeclarationDir: true
+        }),
+        terser()
+      ]
+    },
+    {
+      input: [`./packages/${path}/src/index.ts`],
+      output: [
+        {
+          file: `./packages/${path}/dist/index.d.ts`,
+        }
+      ],
+      plugins: [dts()]
+    },
   ];
 }
 

@@ -1,13 +1,2 @@
-(function (factory) {
-    typeof define === 'function' && define.amd ? define(factory) :
-    factory();
-})((function () { 'use strict';
-
-    function sum(num1, num2) {
-        return num1 + num2;
-    }
-
-    console.log(sum(1, 2));
-
-}));
+import o from"@catdoll/mitt";console.log(1+2);const n=new o;function e(o){console.log("demoFn",o)}n.on("demoFn",e),e(1),e(2),n.off("demoFn",e),e(3);
 //# sourceMappingURL=index.js.map
