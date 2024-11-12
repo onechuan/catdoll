@@ -53,7 +53,7 @@ class EventMitt implements EventMmitter {
         if(handlers){
             handlers.slice().map(handler => handler(params));
         }
-    }
+    } 
     
     // 注册事件处理函数，只触发一次
     once(type: string, handler: Function) {

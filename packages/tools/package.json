@@ -1,0 +1,16 @@
+{
+  "name": "@catdoll/tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "private": false,
+
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
