@@ -5,29 +5,34 @@
  * @param delay 延迟时间，单位毫秒
  * @param immediate 是否立即执行，默认false
  */
-function debounce<T extends (...args: any[])=>any>(func: T, delay: number, immediate: boolean = false): T {
-    let timer: ReturnType<typeof setTimeout> | null = null;
+export function debounce<T extends (...args: any[]) => any>(func: T, wait: number, immediate: boolean = false): T {
+    let timeout: ReturnType<typeof setTimeout> | null = null;
+    let result: ReturnType<T> | undefined; // 用于存func函数的执行结果
 
-    return function(this: ThisParameterType<T>, ...args: Parameters<T>) {
-        const _this = this;
-        const callNow = immediate && !timer;
+    const later = function(context: ThisParameterType<T>, args: Parameters<T>) {
+        timeout = null;
+        if (args && args.length > 0) {
+            result = func.apply(context, args);
+        }
+    };
 
-        if(timer){
-            clearTimeout(timer);
+    const debounced: T = function(this: ThisParameterType<T>,...args: Parameters<T>): ReturnType<T> {
+        if (timeout) {
+            clearTimeout(timeout);
         }
 
-        timer = setTimeout(() => {
-            if(!immediate){
-                func.apply(_this, args);
+        if (immediate) {
+            const callNow = !timeout;
+            timeout = setTimeout(() => later(this, args), wait);
+            if (callNow) {
+                result = func.apply(this, args);
             }
-            timer = null;
-        }, delay);
-
-        if(callNow){
-            func.apply(_this, args);
+        } else {
+            timeout = setTimeout(() => later(this, args), wait);
         }
-        return func.apply(_this, args);
-    } as T;
-}
 
-export default debounce
+        return result as ReturnType<T>;
+    } as T;
+
+    return debounced;
+}

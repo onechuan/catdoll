@@ -1,2 +1,2 @@
-function n(n,t,r){void 0===r&&(r=!1);var l=null;return function(){for(var u=[],e=0;e<arguments.length;e++)u[e]=arguments[e];var o=this,a=r&&!l;return l&&clearTimeout(l),l=setTimeout((function(){r||n.apply(o,u),l=null}),t),a&&n.apply(o,u),n.apply(o,u)}}export{n as debounce};
+function t(t,n,e){void 0===e&&(e=!1);var r,u=null,i=function(n,e){u=null,e&&e.length>0&&(r=t.apply(n,e))};return function(){for(var o=this,l=[],f=0;f<arguments.length;f++)l[f]=arguments[f];if(u&&clearTimeout(u),e){var a=!u;u=setTimeout((function(){return i(o,l)}),n),a&&(r=t.apply(this,l))}else u=setTimeout((function(){return i(o,l)}),n);return r}}export{t as debounce};
 //# sourceMappingURL=index.js.map

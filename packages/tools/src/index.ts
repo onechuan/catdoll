@@ -1,5 +1,1 @@
-import debounce from "./debounce";
-
-export {
-    debounce
-}
+export * from "./debounce";
