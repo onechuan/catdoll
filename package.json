@@ -3,6 +3,7 @@
   "version": "0.0.3",
   "description": "猫娃娃工具",
   "main": "index.js",
+  "private": false,
   "scripts": {
     "build": "rollup -c",
     "changeset": "changeset",
