@@ -1,8 +1,8 @@
 {
-  "name": "@dogdoll/monitor-sdk",
+  "name": "@catdoll/monitor-sdk",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build":"rollup -c"
   },
