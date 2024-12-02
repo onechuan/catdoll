@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@dogdoll/web-sdk</title>
+</head>
+<body>
+  <h1>test</h1>
+  <script> 
+    window.addEventListener("pageshow", (event) => {
+      requestAnimationFrame(() => {
+        ["load", "DOMContentLoaded"].forEach((type) => {
+          console.log("test====>", performance.now() - event.timeStamp);
+          
+        })
+      })
+    })
+  </script>
+</body>
+</html>

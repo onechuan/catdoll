@@ -9,12 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.5.12",
-    "@catdoll/tools": "workspace:*"
+    "@catdoll/tools": "workspace:*",
+    "vue": "^3.5.12"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
     "@vitejs/plugin-vue": "^5.1.4",
+    "sass-embedded": "^1.81.0",
     "typescript": "~5.6.2",
     "vite": "^5.4.10",
     "vue-tsc": "^2.1.8"
