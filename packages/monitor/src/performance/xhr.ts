@@ -1,6 +1,15 @@
 import { lazyReportBatch } from "../report";
 
-export const originalProto = XMLHttpRequest.prototype;
+interface XMLHttpRequestWithMethod extends XMLHttpRequest {
+  method: string;
+  url: string;
+  startTime: number;
+  endTime: number;
+  duration: number;
+}
+
+
+export const originalProto = XMLHttpRequest.prototype as  XMLHttpRequestWithMethod;
 export const originalOpen = originalProto.open;
 export const originalSend = originalProto.send;
 
