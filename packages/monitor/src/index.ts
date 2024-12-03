@@ -2,6 +2,7 @@ import * as performance from "./performance";
 import * as error from "./error"
 import * as behavior from "./behavior"
 import { setConfig } from "./config";
+import { lazyReportBatch } from "./report";
 
 window.__webMonitorSdk__ = {
     version: "0.0.1",
@@ -17,7 +18,16 @@ export function install(Vue: any, options: any){
 
     // vue项目中通过Vue.config.errorHandler来捕获错误 https://cn.vuejs.org/api/application.html#app-config-errorhandler
     Vue.config.errorHandler = function(err, vm, info) {
-        // TODO: 上报具体的错误信息
+        // 上报具体的错误信息
+        const reportData = {
+            info,
+            error: err.stack,
+            subType:"vue",
+            type:"error",
+            startTime: window.performance.now(),
+            pageUrl: window.location.href
+        }
+        lazyReportBatch(reportData);
         if(handler){
             handler.call(this, err, vm, info)
         }
@@ -25,10 +35,19 @@ export function install(Vue: any, options: any){
 }
 
 // 针对React的错误捕获
-function errorBoundary(err){
+function errorBoundary(err, info){
     if(window.__webMonitorSdk__.react) return;
     window.__webMonitorSdk__.react = true;
-    // TODO: 上报具体的错误信息
+    // 上报具体的错误信息
+    const reportData = {
+        error: err.stack,
+        info,
+        subType:"react",
+        type:"error",
+        startTime: window.performance.now(),
+        pageUrl: window.location.href
+    }
+    lazyReportBatch(reportData);
 }
 
 function init(options){

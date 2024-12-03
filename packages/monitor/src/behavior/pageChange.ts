@@ -17,7 +17,7 @@ export default function pageChange() {
         };
         lazyReportBatch(reportData);
         oldUrl = newUrl;
-    });
+    },true);
 
     let from = "";
     window.addEventListener("popstate",function(event){

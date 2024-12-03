@@ -21,6 +21,6 @@ export default function click(){
                 }
                 lazyReportBatch(reportData);
             }
-        })
+        }, true)
     })
 }

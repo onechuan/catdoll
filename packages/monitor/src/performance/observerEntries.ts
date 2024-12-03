@@ -43,10 +43,10 @@ function observerEntries() {
   }else{
     const onLoad = () => {
       observerEvent();
-      window.addEventListener("load", onLoad, true);
+      window.removeEventListener("load", onLoad, true);
       
     }
-    window.removeEventListener("load", onLoad, true);
+    window.addEventListener("load", onLoad, true);
   }
 }
 

@@ -15,11 +15,14 @@ export function report(data: any){
         id: generateUniqueId(),
         data
     });
-    // 发送数据，优先使用 sendBeacon
-    const value = beaconRequest(config.url, reportData) as unknown as boolean;
-    if(!value){
-        // 上报数据，使用图片方式
-        config.isImageUpload ? imgRequest(reportData) : xhrRequest(config.url, reportData);
+
+    // 图片上传，直接使用imgRequest
+    if(config.isImageUpload){
+        imgRequest(reportData);
+    }else{
+        // 如果浏览器支持sendBeacon，使用sendBeacon，否则使用xhr
+        if(!!window.navigator.sendBeacon) return beaconRequest(reportData);
+        xhrRequest(config.url, reportData);
     }
 }
 
@@ -31,6 +34,7 @@ export function report(data: any){
 export function lazyReportBatch(data: any){
     addCache(data);
     const cacheData = getCache();
+    console.error("cacheData", cacheData);
     if(cacheData.length && cacheData.length > config.batchSize){
         report(cacheData);
         clearCache()
@@ -66,18 +70,18 @@ export const isSupportSendBeacon = ()=> "sendBeacon" in navigator;
 
 const sendBeacon = isSupportSendBeacon() ? navigator.sendBeacon : xhrRequest;
 
-export function beaconRequest(url: string, data: any){
+export function beaconRequest(data: any){
     let flag = true;
     if(window.requestIdleCallback){
         window.requestIdleCallback(()=>{
-            flag = sendBeacon(url, data) as boolean
+            flag = sendBeacon(config.url, data) as boolean
             return flag
         },{
             timeout: 3*1000
         })
     }else{
         setTimeout(() => {
-            flag = sendBeacon(url, data) as boolean
+            flag = sendBeacon(config.url, data) as boolean
             return flag
         });
     }
