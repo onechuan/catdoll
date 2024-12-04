@@ -10,6 +10,7 @@ export const originalSend = XMLHttpRequest.prototype.send;
 export function report(data: any){
     if(!config.url){
         console.error("请设置上传url地址");
+        return;
     }
     const reportData = JSON.stringify({
         id: generateUniqueId(),

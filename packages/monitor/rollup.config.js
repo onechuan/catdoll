@@ -5,8 +5,6 @@ import dts from 'rollup-plugin-dts';
 import { terser } from 'rollup-plugin-terser';
 
 
-const packagesDir = filePath => path.resolve(__dirname, filePath);
-
 export default [
   {
     input: [`./src/index.ts`],
