@@ -1,0 +1,2 @@
+function t(t,n,e){void 0===e&&(e=!1);var r,u=null,i=function(n,e){u=null,e&&e.length>0&&(r=t.apply(n,e))};return function(){for(var o=this,l=[],f=0;f<arguments.length;f++)l[f]=arguments[f];if(u&&clearTimeout(u),e){var a=!u;u=setTimeout((function(){return i(o,l)}),n),a&&(r=t.apply(this,l))}else u=setTimeout((function(){return i(o,l)}),n);return r}}export{t as debounce};
+//# sourceMappingURL=index.esm.js.map

@@ -3,7 +3,10 @@ import WebMonitorSdk from "@catdoll/monitor-sdk";
 import './style.css'
 import App from './App.vue'
 
-WebMonitorSdk.install()
+
 
 const app =createApp(App)
+app.use(WebMonitorSdk,{
+  url:"http://127.0.0.1:3000/reportData",
+})
 app.mount('#app')

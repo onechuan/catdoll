@@ -1,7 +1,7 @@
 import { lazyReportBatch } from "../report";
 
 
-export default function click(){
+export default function onClick(){
     ["mousedown","touchstart"].forEach(eventType=>{
         window.addEventListener(eventType, (event)=>{
             const target = event.target as any;

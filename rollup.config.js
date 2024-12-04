@@ -9,12 +9,33 @@ const packagesDir = path.resolve(__dirname, 'packages');
 const packageFiles = fs.readdirSync(packagesDir);
 
 function output(path) {
-  return [
+  return [{
+    input: [`./packages/${path}/src/index.ts`],
+    output: [
+      {
+        file: `./packages/${path}/dist/index.js`,
+        format: 'iife',
+        name: 'catdoll',
+        sourcemap: true
+      }
+    ],
+    plugins: [
+      typescript({
+        tsconfigOverride: {
+          compilerOptions: {
+            module: 'ESNext'
+          }
+        },
+        useTsconfigDeclarationDir: true
+      }),
+      terser()
+    ]
+  },
     {
       input: [`./packages/${path}/src/index.ts`],
       output: [
         {
-          file: `./packages/${path}/dist/index.js`,
+          file: `./packages/${path}/dist/index.esm.js`,
           format: 'esm',
           name: 'catdoll',
           sourcemap: true

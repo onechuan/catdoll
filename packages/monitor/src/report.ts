@@ -66,23 +66,17 @@ export function xhrRequest(url: string, data: any){
     }
 }
 
-export const isSupportSendBeacon = ()=> "sendBeacon" in navigator;
-
-const sendBeacon = isSupportSendBeacon() ? navigator.sendBeacon : xhrRequest;
-
-export function beaconRequest(data: any){
-    let flag = true;
-    if(window.requestIdleCallback){
-        window.requestIdleCallback(()=>{
-            flag = sendBeacon(config.url, data) as boolean
-            return flag
-        },{
-            timeout: 3*1000
-        })
-    }else{
+export function beaconRequest(data) {
+    if (window.requestIdleCallback) {
+        window.requestIdleCallback(
+            () => {
+                window.navigator.sendBeacon(config.url, data);
+            },
+            { timeout: 3000 }
+        );
+    } else {
         setTimeout(() => {
-            flag = sendBeacon(config.url, data) as boolean
-            return flag
+            window.navigator.sendBeacon(config.url, data);
         });
     }
 }

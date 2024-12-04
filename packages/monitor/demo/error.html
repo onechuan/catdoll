@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>error demo</title>
+  <script src="../dist/index.js"></script>
+  <script>
+    console.log("webMonitorSdk", webMonitorSdk);
+    
+    webMonitorSdk.init({
+      url:"http://127.0.0.1:3000/reportData",
+    })
+  </script>
+</head>
+<body>
+  <img src="https://toutiao.com/1.png" alt="">
+  <img src="https://toutiao.com/2.png" alt=""/>
+  <img src="https://toutiao.com/3.png" alt=""/>
+  <script>
+    function test(){
+      return Promise.reject(new Error("test error"))
+    }
+    function test2(){
+      return Promise.reject(new Error("test error2"))
+    }
+    test()
+    test2()
+    throw new Error("test error3")
+  </script>
+</body>
+</html>
