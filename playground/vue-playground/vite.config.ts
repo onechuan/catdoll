@@ -8,6 +8,17 @@ export default defineConfig({
     port: 9001,
     host:"0.0.0.0"
   },
+  build:{
+    sourcemap: true,
+    outDir: "dist",
+    emptyOutDir: true,
+    rollupOptions:{}
+  },
+  resolve:{
+    alias:{
+      "@": "/src"
+    }
+  },
   css:{
     preprocessorOptions: {
       scss: {

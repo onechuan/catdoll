@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "private": false,
   "scripts": {
     "build":"rollup -c"
   },

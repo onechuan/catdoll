@@ -1,6 +1,6 @@
-import * as performance from "./performance";
-import * as error from "./error"
-import * as behavior from "./behavior"
+import  performance from "./performance";
+import  error from "./error"
+import  behavior from "./behavior"
 import { setConfig } from "./config";
 import { lazyReportBatch } from "./report";
 
@@ -35,7 +35,7 @@ export function install(Vue: any, options: any){
 }
 
 // 针对React的错误捕获
-function errorBoundary(err, info){
+export function errorBoundary(err, info){
     if(window.__webMonitorSdk__.react) return;
     window.__webMonitorSdk__.react = true;
     // 上报具体的错误信息
@@ -50,8 +50,11 @@ function errorBoundary(err, info){
     lazyReportBatch(reportData);
 }
 
-function init(options){
+export function init(options){
     setConfig(options);
+    performance();
+    error();
+    behavior();
 }
 
 export default {
@@ -59,7 +62,8 @@ export default {
     performance,
     error,
     init,
-    behavior
+    behavior,
+    errorBoundary
 }
 
 // webMonitorSdk.init({

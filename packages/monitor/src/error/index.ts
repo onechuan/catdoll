@@ -45,7 +45,7 @@ function error() {
         startTime: event.timeStamp
       }
       lazyReportBatch(reportData);
-    })
+    }, true)
 }
 
 

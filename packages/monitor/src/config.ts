@@ -8,6 +8,8 @@ const config = {
 };
 
 export function setConfig(options){
+    console.log("setConfig", options);
+    
     for(const key in config){
         if(options[key]){
             config[key] = options[key]

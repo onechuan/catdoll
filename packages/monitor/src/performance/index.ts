@@ -1,7 +1,17 @@
-export * from "./fetch";
-export * from "./observerEntries";
-export * from "./observerFCP";
-export * from "./observerLCP";
-export * from "./observerPaint";
-export * from "./observerLoad";
-export * from "./xhr";
+import fetch from "./fetch";
+import observerEntries from "./observerEntries";
+import observerFCP from "./observerFCP";
+import observerLCP from "./observerLCP";
+import observerPaint from "./observerPaint";
+import observerLoad from "./observerLoad";
+import xhr from "./xhr";
+
+export default function performance() {
+    fetch();
+    observerEntries();
+    observerFCP();
+    observerLCP();
+    observerPaint();
+    observerLoad();
+    xhr();
+}
