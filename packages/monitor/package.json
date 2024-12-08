@@ -1,14 +1,19 @@
 {
   "name": "@catdoll/monitor-sdk",
   "version": "1.0.0",
-  "description": "",
+  "description": "猫娃监控sdk",
   "main": "dist/index.js",
   "private": false,
   "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build":"rollup -c"
   },
-  "keywords": [],
+  "keywords": [
+    "catdoll",
+    "monitor",
+    "sdk"
+  ],
   "author": "",
   "license": "ISC"
 }
